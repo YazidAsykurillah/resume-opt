@@ -12,6 +12,29 @@ class Resume extends Model
 {
     protected $guarded = [];
 
+    protected $appends = ['file_name', 'original_name', 'size', 'mime_type'];
+
+    public function getFileNameAttribute()
+    {
+        return $this->attributes['filename'] ?? null;
+    }
+
+    public function getOriginalNameAttribute()
+    {
+        return $this->attributes['original_filename'] ?? null;
+    }
+
+    public function getSizeAttribute()
+    {
+        return $this->attributes['file_size'] ?? null;
+    }
+
+    public function getMimeTypeAttribute()
+    {
+        $filename = $this->attributes['filename'] ?? '';
+        return str_ends_with(strtolower($filename), '.pdf') ? 'application/pdf' : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+    }
+
     protected function casts(): array
     {
         return [

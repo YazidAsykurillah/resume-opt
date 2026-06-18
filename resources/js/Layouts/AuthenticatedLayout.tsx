@@ -33,6 +33,18 @@ export default function Authenticated({
                                 >
                                     Dashboard
                                 </NavLink>
+                                <NavLink
+                                    href={route('resumes.index')}
+                                    active={route().current('resumes.*')}
+                                >
+                                    Resumes
+                                </NavLink>
+                                <NavLink
+                                    href={route('analyses.index')}
+                                    active={route().current('analyses.*')}
+                                >
+                                    Analyses
+                                </NavLink>
                             </div>
                         </div>
 
@@ -136,6 +148,18 @@ export default function Authenticated({
                             active={route().current('dashboard')}
                         >
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('resumes.index')}
+                            active={route().current('resumes.*')}
+                        >
+                            Resumes
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route('analyses.index')}
+                            active={route().current('analyses.*')}
+                        >
+                            Analyses
                         </ResponsiveNavLink>
                     </div>
 

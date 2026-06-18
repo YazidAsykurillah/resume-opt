@@ -35,4 +35,13 @@ return [
         ],
     ],
 
+    'gemini' => [
+        'key' => env('GEMINI_API_KEY'),
+        'model' => env('GEMINI_MODEL', 'gemini-1.5-pro'),
+    ],
+
+    'firecrawl' => [
+        'key' => env('FIRECRAWL_API_KEY'),
+    ],
+
 ];
