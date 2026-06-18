@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #6366F1;
+  --color-secondary: #818CF8;
+  --color-cta: #10B981;
+  --color-background: #F5F3FF;
+  --color-text: #1E1B4B;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text font-sans antialiased selection:bg-primary/20 selection:text-primary;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-cta text-white px-6 py-3 rounded-lg font-semibold shadow-md transition-all duration-200 ease-in-out cursor-pointer hover:bg-emerald-400 hover:shadow-lg hover:-translate-y-[1px] focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center bg-transparent text-primary border-2 border-primary px-6 py-3 rounded-lg font-semibold transition-all duration-200 ease-in-out cursor-pointer hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+
+  .card {
+    @apply bg-white rounded-xl p-6 shadow-md transition-all duration-200 ease-in-out hover:shadow-lg border border-gray-100;
+  }
+
+  .card-glass {
+    @apply bg-white/70 backdrop-blur-md rounded-xl p-6 shadow-md transition-all duration-200 ease-in-out hover:shadow-lg border border-white/20;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 border border-gray-200 rounded-lg text-base transition-all duration-200 ease-in-out bg-white focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/20;
+  }
+
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity;
+  }
+
+  .modal {
+    @apply bg-white rounded-2xl p-8 shadow-xl max-w-[500px] w-[90%] mx-auto z-50 transform transition-all;
+  }
+}
