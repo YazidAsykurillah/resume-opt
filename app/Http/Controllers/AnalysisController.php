@@ -8,6 +8,8 @@ use App\Models\Resume;
 use App\Services\AnalysisService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Gate;
+use App\Jobs\RunAnalysisJob;
 
 class AnalysisController extends Controller
 {
@@ -41,6 +43,27 @@ class AnalysisController extends Controller
             $request->user()->id
         );
 
-        return redirect()->route('analyses.index');
+        return redirect()->route('analyses.show', $analysis->id);
+    }
+
+    public function show(Analysis $analysis)
+    {
+        Gate::authorize('view', $analysis);
+
+        return Inertia::render('Analysis/Show', [
+            'analysis' => $analysis->load(['job.parsedJob', 'resume.parsedResume', 'result'])
+        ]);
+    }
+
+    public function retry(Analysis $analysis)
+    {
+        Gate::authorize('update', $analysis);
+
+        if ($analysis->status->value !== 'processing') {
+            $analysis->update(['status' => \App\Enums\AnalysisStatus::Pending, 'error_message' => null]);
+            RunAnalysisJob::dispatch($analysis);
+        }
+
+        return back()->with('success', 'Analysis job has been dispatched.');
     }
 }

@@ -28,7 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('resumes', ResumeController::class)->only(['index', 'show', 'store', 'destroy']);
     Route::post('/resumes/{resume}/retry', [ResumeController::class, 'retry'])->name('resumes.retry');
     Route::resource('jobs', JobController::class)->only(['store', 'destroy']);
-    Route::resource('analyses', AnalysisController::class)->only(['index', 'create', 'store']);
+    Route::resource('analyses', AnalysisController::class)->only(['index', 'create', 'store', 'show']);
+    Route::post('/analyses/{analysis}/retry', [AnalysisController::class, 'retry'])->name('analyses.retry');
 });
 
 require __DIR__.'/auth.php';

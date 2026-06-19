@@ -62,6 +62,9 @@ class LLMService
             return null;
         }
 
-        return json_decode($content, true);
+        // Clean up markdown block if Gemini included it
+        $content = preg_replace('/```(?:json)?\s*(.*?)\s*```/s', '$1', $content);
+
+        return json_decode(trim($content), true);
     }
 }

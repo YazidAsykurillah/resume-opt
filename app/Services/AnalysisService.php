@@ -9,11 +9,15 @@ class AnalysisService
 {
     public function createAnalysis(int $resumeId, int $jobId, int $userId): Analysis
     {
-        return Analysis::create([
+        $analysis = Analysis::create([
             'user_id' => $userId,
             'resume_id' => $resumeId,
             'job_id' => $jobId,
             'status' => AnalysisStatus::Pending,
         ]);
+
+        \App\Jobs\RunAnalysisJob::dispatch($analysis);
+
+        return $analysis;
     }
 }

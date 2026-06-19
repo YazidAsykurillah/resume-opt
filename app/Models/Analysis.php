@@ -40,4 +40,9 @@ class Analysis extends Model
     {
         return $this->hasMany(AnalysisUsage::class);
     }
+
+    public function result(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(AnalysisResult::class);
+    }
 }
