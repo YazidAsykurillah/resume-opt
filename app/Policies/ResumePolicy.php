@@ -46,4 +46,12 @@ class ResumePolicy
     {
         return $user->id === $resume->user_id && $user->can('resume.delete');
     }
+
+    /**
+     * Determine whether the user can retry parsing the model.
+     */
+    public function retry(User $user, Resume $resume): bool
+    {
+        return $user->id === $resume->user_id;
+    }
 }

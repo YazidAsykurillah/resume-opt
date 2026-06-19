@@ -12,7 +12,7 @@ export default function Dashboard({ auth }: any) {
         >
             <Head title="Dashboard" />
 
-            <div className="py-12 bg-[#F5F3FF] min-h-screen font-['Plus_Jakarta_Sans']">
+            <div className="py-12 bg-[#F5F3FF] min-h-screen">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white/80 backdrop-blur-sm shadow-xl sm:rounded-2xl border border-white">
                         <div className="p-12 text-center">

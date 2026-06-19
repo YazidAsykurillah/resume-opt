@@ -61,15 +61,21 @@ class ResumeParsingService
                 throw new Exception('Failed to generate structured data');
             }
 
-            $resume->parsedResume()->create([
+            $resume->parsed()->create([
                 'json_data' => $json,
                 'parsed_at' => now(),
             ]);
 
-            $resume->update(['status' => ResumeStatus::Parsed]);
+            $resume->update([
+                'status' => ResumeStatus::Parsed,
+                'error_message' => null,
+            ]);
         } catch (\Exception $e) {
             Log::error('Resume parsing failed: ' . $e->getMessage(), ['resume_id' => $resume->id, 'exception' => $e]);
-            $resume->update(['status' => ResumeStatus::Failed]);
+            $resume->update([
+                'status' => ResumeStatus::Failed,
+                'error_message' => $e->getMessage(),
+            ]);
         }
     }
 

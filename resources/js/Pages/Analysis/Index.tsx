@@ -8,7 +8,7 @@ export default function Index({ auth, analyses }: any) {
         >
             <Head title="Analyses" />
 
-            <div className="py-12 bg-[#F5F3FF] min-h-screen font-['Plus_Jakarta_Sans']">
+            <div className="py-12 bg-[#F5F3FF] min-h-screen">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     
                     <div className="flex justify-between items-center mb-6">

@@ -15,7 +15,7 @@ export default function Index({ auth, resumes }: any) {
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">My Resumes</h2>}
         >
             <Head title="My Resumes" />
-            <div className="py-12 bg-[#F5F3FF] min-h-screen font-['Plus_Jakarta_Sans']">
+            <div className="py-12 bg-[#F5F3FF] min-h-screen">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white/80 backdrop-blur-sm overflow-hidden shadow-sm sm:rounded-xl border border-white">
                         <div className="p-6">
@@ -59,7 +59,12 @@ export default function Index({ auth, resumes }: any) {
                                                     {new Date(resume.created_at).toLocaleDateString()}
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <button onClick={() => handleDelete(resume.id)} className="text-red-600 hover:text-red-900">
+                                                    {resume.status === 'failed' && (
+                                                        <Link href={route('resumes.retry', resume.id)} method="post" as="button" type="button" className="text-[#6366F1] hover:text-indigo-900 mr-4 font-semibold">
+                                                            Retry
+                                                        </Link>
+                                                    )}
+                                                    <button onClick={() => handleDelete(resume.id)} className="text-red-600 hover:text-red-900 font-semibold">
                                                         Delete
                                                     </button>
                                                 </td>

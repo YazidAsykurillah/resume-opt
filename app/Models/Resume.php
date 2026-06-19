@@ -48,7 +48,7 @@ class Resume extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function parsedResume(): HasOne
+    public function parsed(): HasOne
     {
         return $this->hasOne(ParsedResume::class);
     }

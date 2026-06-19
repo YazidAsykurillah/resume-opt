@@ -58,4 +58,22 @@ class ResumeController extends Controller
         
         return redirect()->route('resumes.index');
     }
+
+    public function retry(Resume $resume)
+    {
+        $this->authorize('retry', $resume);
+
+        if ($resume->status !== \App\Enums\ResumeStatus::Failed) {
+            return redirect()->back()->with('error', 'Only failed resumes can be retried.');
+        }
+
+        $resume->update([
+            'status' => \App\Enums\ResumeStatus::Parsing,
+            'error_message' => null,
+        ]);
+
+        dispatch(new \App\Jobs\ParseResumeJob($resume));
+
+        return redirect()->back();
+    }
 }
